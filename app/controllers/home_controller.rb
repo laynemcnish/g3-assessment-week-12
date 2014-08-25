@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
   def index
-    @movies = Movie.all
+    @movies = Movie.order(:year).reverse
   end
 end
