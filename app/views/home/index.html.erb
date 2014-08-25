@@ -1,0 +1,9 @@
+<%= link_to "Add Movie", new_movie_path %>
+
+<% @movies.each do |movie| %>
+<p>
+<strong>  <%= movie.name %> (<%= movie.year %>) </strong>
+<br>
+<%= movie.synopsis %>
+</p>
+<% end %>
