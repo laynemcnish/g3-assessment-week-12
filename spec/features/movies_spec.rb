@@ -11,6 +11,14 @@ feature 'user add movies' do
     user_views_new_movie_page
     user_adds_new_movie
   end
+
+  scenario "user must fill in all fields" do
+    user_views_new_movie_page
+    click_button "Create Movie"
+    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content("Year can't be blank")
+    expect(page).to have_content("Synopsis can't be blank")
+  end
 end
 
 
