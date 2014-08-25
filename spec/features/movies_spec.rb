@@ -37,6 +37,15 @@ feature 'user add movies' do
     expect(page).to have_selector("ul.movies li:nth-child(2)", :text => "Face/Off")
     expect(page).to have_selector("ul.movies li:nth-child(3)", :text => "Leaving Las Vegas")
   end
+
+  scenario "users can only add movies between when nic cage started in 1981 and today" do
+    user_views_new_movie_page
+    fill_in 'Name', with: 'Face/Off'
+    fill_in 'Year', with: '1970'
+    fill_in 'Synopsis', with: 'To foil an extortion plot, an FBI agent undergoes a face-transplant surgery and assumes the identity and physical appearance of a ruthless terrorist, but the plan backfires when the same criminal impersonates the cop with the same method.'
+    click_button 'Create Movie'
+    expect(page).to have_content("Year must be during a time period that Nic Cage was actively making movies (1981 - present)")
+  end
 end
 
 
